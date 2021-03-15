@@ -34,7 +34,7 @@
     {% block extra_js %}
     {% endblock %}
 
-    <title>bossmansboutique {% block extra_title %}{% endblock %}</title>
+    <title>FirstHand boutique {% block extra_title %}{% endblock %}</title>
   </head>
 
   <body>
@@ -116,101 +116,6 @@
         </div>
         
       </header>
-
-
-    <!---------------------image----------------------------------
-{% block image %}
-<div class="img-container d-none d-md-block">
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-7 col-md-5 mb-auto">
-                <h1 class="display-6 logo-font text-dark d-none d-md-block">
-                    CHECK OUT THESE COLLECTIONS
-                </h1>
-                <div>
-                    <h4 class="my-5">
-                        <a href="#" class="shop-now-button btn btn-warning rounded-0 text-uppercase py3">Shop Now</a>
-                    </h4>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>----------->
-<!-------------------------image galary ----------------------------------------------------------
-<h1 class="display-6 logo-font text-dark text-center my-2">OUR COLLECTIONS</h1>
-<div class="container-fluid">
-<div class="row">
-    <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="#" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Cars Collections</h5>
-    <a href="#" class="btn btn-outline-secondary">More</a>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="#" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Chairs Collection</h5>
-    <a href="#" class="btn btn-outline-secondary">More</a>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="#" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Tables Collection</h5>
-    <a href="#" class="btn btn-outline-secondary">More</a>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="#" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Refrigerators Collections</h5>
-    <a href="#" class="btn btn-outline-secondary">More</a>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-</div>
-</div>
-
-{% endblock %}----------->
       
 <!---------------------toast popup messages--------------------------------------------------->
 
@@ -232,17 +137,19 @@
         </div>
     {% endif %}
 
-       {% block page_header %}
+    {% block page_header %}
            
-       {% endblock %}
-       
-       {% block image_header %}
-    
-       {% endblock %}
-    
-       {% block content %}
+    {% endblock %}
 
-       {% endblock %}
+    
+    {% block content %}
+
+    {% endblock %}
+   
+        
+    {% block postloadjs %}
+
+    {% endblock %}
    
 
   </body>
