@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
+from pathlib import Path, os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shop.apps.ShopConfig'
+    'django.contrib.sites',
+    'shop',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +72,27 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Emails confirmat settx
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # allows auth using usernam/email
+ACCOUNT_EMAIL_REQUIRED = True                # email required to register 4 the site
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'    # verifying if users are using real email
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True      # comfirmation to avoid user typo error
+ACCOUNT_USERNAME_MIN_LENGTH = 4            # min username lenth to 4 
+LOGIN_URL = '/accounts/login/'         # login url
+LOGIN_REDIRECT_URL = '/'               # redirect url after login
+
 
 WSGI_APPLICATION = 'myshop.wsgi.application'
 
@@ -119,3 +145,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
