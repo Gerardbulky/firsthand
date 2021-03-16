@@ -26,18 +26,26 @@
 .product{
     border-radius: 0 4px 4px 4px;
 }
+.logo-font {
+    color: orange;
+}
+
+.card {
+    margin: 5px;
+}
 
 html {
     height: 100%;
 }
 
 body {
-    background: url('/static/img/coverpage.jpg') no-repeat center center;
+    background: url('/static/img/coverimages.jpg') no-repeat center center;
     background-size: cover;
-    height: calc(100vh - 164px);
+    height: calc(100vh - 10vh);
     color: #555;
     font-family: 'Lato';
 }
+
 
 /* from Bulma */
 .icon {
@@ -57,7 +65,7 @@ body {
 }
 
 .shop-now-button {
-    background: black;
+    background: orange;
     color: white;
     min-width: 260px;
 }
