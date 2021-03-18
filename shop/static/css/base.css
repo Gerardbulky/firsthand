@@ -32,7 +32,10 @@
 
 .card {
     margin: 5px;
+    position: relative;
+    left: 50px;
 }
+
 
 html {
     height: 100%;
@@ -260,7 +263,6 @@ input[name='q']::placeholder {
 .allauth-form-inner-content a {
 	color: #17a2b8; /* text-info */
 }
-
 
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {

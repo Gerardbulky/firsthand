@@ -1,11 +1,11 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav mr-auto mx-auto">
         <li class="nav-item active">
-            <a class="nav-link text-white font-weight-bold logo-font mr-2" href="#">Home<span
+            <a class="nav-link text-white font-weight-bold logo-font mr-2" href="{% url 'index' %}">Home<span
                     class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold logo-font mr-2" href="#" id="all-product-link">All
+            <a class="nav-link text-white font-weight-bold logo-font mr-2" href="{% url 'shop:product_list' %}" id="all-product-link">All
                 Products</a>
         </li>
         <li class="nav-item">

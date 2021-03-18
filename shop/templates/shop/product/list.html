@@ -2,88 +2,77 @@
 {% load static %}
 
 {% block page_header %}
-        <div class="container header-container">
-            <div class="row">
-                <div class="col"></div>
-            </div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
 {% endblock %}
 
 {% block title %}
-  {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% if category %}{{ category.name }}{% else %}Products{% endif %}
 {% endblock %}
 
 {% block content %}
 
-  <div class="overlay"></div>
-  <div class="container-fluid">
-  <div class="row">
-      <div class="col text-center mt-3">
-    <h3>Categories</h3>
-
-      <div class="row">
-       <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-          <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-             <li class="list-inline-item" {% if not category %}class="selected"{% endif %}>
-                 <a href="{% url 'shop:product_list' %}">All</a>
-            </li>
-            
-            {% for c in categories %}
-                <li {% if category.slug == c.slug %}class="selected">
-                    {% endif %}
-                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-        </div>
-        </div>
-    <hr class="w-50 mb-1">
-   </div>
-   </div>
-  
-    <h2>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h2>
+<div class="overlay"></div>
+<div class="container-fluid">
     <div class="row">
-    {% for product in products %}
-      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-          <div class="container">
-        <a href="{{ product.get_absolute_url }}">
-          <img class="image-style" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-        </a>
-    <div class="box-element product">
-        <a href="{{ product.get_absolute_url }}"><strong>{{ product.name }}</strong></a>
-        <h5 style="display: inline-block; float:right;"> ${{ product.price }}</h5>
-        <hr>
-        <button class="btn btn-outline-secondary add-btn">Add to Cart</button>
-        <a class="btn btn-outline-success" href="#">View</a>
-    </div>
+        <div class="col text-center mt-3">
+            <h3>Categories</h3>
+            {% for c in categories %}
+                {% if category.slug == c.slug %}
+                    <a class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                {% endif %}
+            {% endfor %}
+            <hr class="w-50 mb-1">
+        </div>
     </div>
 
-    <!----making a space between the products-->
+    <h2 class="product_header text-center mb-3">{% if category %}{{ category.name }}{% else %}PRODUCTS{% endif %}</h2>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+            <div class="container">
+                <a href="{{ product.get_absolute_url }}">
+                    <img class="image-style"
+                        src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                </a>
+                <div class="box-element product">
+                    <a href="{{ product.get_absolute_url }}"><strong>{{ product.name }}</strong></a>
+                    <h5 style="display: inline-block; float:right;"> ${{ product.price }}</h5>
+                    <hr>
+                    <button class="btn btn-outline-secondary add-btn">Add to Cart</button>
+                    <a class="btn btn-outline-success" href="{{ product.get_absolute_url }}">View</a>
+                </div>
+            </div>
+
+            <!----making a space between the products-->
 
             {% if forloop.counter|divisibleby:1 %}
-                            <div class="col-12 d-sm-none mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}                        
-                        {% if forloop.counter|divisibleby:2 %}
-                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:3 %}
-                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:4 %}
-                            <div class="col-12 d-none d-xl-block mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
+            <div class="col-12 d-sm-none mb-5">
+                <hr>
+            </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:2 %}
+            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                <hr>
+            </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:3 %}
+            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                <hr>
+            </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:4 %}
+            <div class="col-12 d-none d-xl-block mb-5">
+                <hr>
+            </div>
+            {% endif %}
         </div>
-    {% endfor %}
-  </div>
- </div>
-  
-  
+        {% endfor %}
+    </div>
+</div>
+
+
 {% endblock %}
