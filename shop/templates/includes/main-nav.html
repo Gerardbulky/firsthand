@@ -9,7 +9,7 @@
                 Products</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold logo-font mr-2" href="#">Cars</a>
+            <a class="nav-link text-white font-weight-bold logo-font mr-2" href="{% url 'shop:product_list' %}?category=vehicles">Vehicles</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white font-weight-bold logo-font mr-2" href="#" id="household-link"
@@ -17,16 +17,16 @@
                 Households
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="household-link">
-                <a class="dropdown-item" href="Kitchen Utensils"></a>
-                <a class="dropdown-item" href="#">Carpets</a>
-                <a class="dropdown-item" href="#">Chairs</a>
-                <a class="dropdown-item" href="#">Tables</a>
-                <a class="dropdown-item" href="#">Beds</a>
-                <a class="dropdown-item" href="#">Fridges</a>
-                <a class="dropdown-item" href="#">Microwaves</a>
-                <a class="dropdown-item" href="#"></a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=kitchen-utensils">Kitchen Utensils</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=carpets">Carpets</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=chairs">Chairs</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=tables">Tables</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=beds">Beds</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=fridges">Fridges</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=microwaves">Microwaves</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=cupboards">cupboards</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">All Household</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=kitchen-utensils,carpets,chairs,tables,beds,fridges,microwaves,cupboards">All Household</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -35,12 +35,12 @@
                 Electronics
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="electronics-link">
-                <a class="dropdown-item" href="#">Televisions</a>
-                <a class="dropdown-item" href="#">Radios</a>
-                <a class="dropdown-item" href="#">Phones</a>
-                <a class="dropdown-item" href="#">Labtops</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=televisions">Televisions</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=radios">Radios</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=phones">Phones</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=laptops">Labtops</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">All Electronics</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=televisions,radios,phones,laptops">All Electronics</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -49,13 +49,13 @@
                 Bikes
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="bike-link">
-                <a class="dropdown-item" href="#">Bicycles</a>
-                <a class="dropdown-item" href="#">Moter Bikes</a>
-                <a class="dropdown-item" href="#">All Bikes</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=bicycle">Bicycles</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=motor-bikes">Moter Bikes</a>
+                <a class="dropdown-item" href="{% url 'shop:product_list' %}?category=bicycle,motor-bikes">All Bikes</a>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold logo-font mr-2" href="#">Others</a>
+            <a class="nav-link text-white font-weight-bold logo-font mr-2" href="{% url 'shop:product_list' %}?category=shoes,cloths">Others</a>
         </li>
     </ul>
 </div>

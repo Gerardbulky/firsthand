@@ -15,6 +15,8 @@ def index(request):
 def product_list(request, category_slug=None):
     query = None
     category = None
+    categories = None
+
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
     if category_slug:
@@ -22,6 +24,12 @@ def product_list(request, category_slug=None):
         products = products.filter(category=category)
 
     if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            products = products.filter(Category__slug__in=categories)
+            categories = Category.objects.filter(slug__in=categories)
+
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -36,7 +44,8 @@ def product_list(request, category_slug=None):
                   {'category': category,
                    'categories': categories,
                    'products': products,
-                   'search_term': query})
+                   'search_term': query,
+                   'current_categories': categories})
 
 
 def product_detail(request, id, slug):
