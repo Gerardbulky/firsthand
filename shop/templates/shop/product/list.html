@@ -10,26 +10,36 @@
 {% endblock %}
 
 {% block title %}
-{% if category %}{{ category.name }}{% else %}Products{% endif %}
 {% endblock %}
 
 {% block content %}
 
 <div class="overlay"></div>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mb-3">
         <div class="col text-center mt-3">
-            <h3>Categories</h3>
-            {% for c in categories %}
-                {% if category.slug == c.slug %}
-                    <a class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-                {% endif %}
+            <h2 class="product_header text-center mb-3">CATEGORIES</h2>
+            {% for c in current_categories %}
+                    <a class="category-badge text-decoration-none" href="{% url 'shop:product_list' %}?category={{ c.slug }}">
+                        <span class="p-t mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.slug }}</span>
+                    </a>
             {% endfor %}
             <hr class="w-50 mb-1">
         </div>
     </div>
 
-    <h2 class="product_header text-center mb-3">{% if category %}{{ category.name }}{% else %}PRODUCTS{% endif %}</h2>
+    <h3 class="product_header text-center mb-3">{% if category %}{{ category.name }}{% else %}PRODUCTS{% endif %}</h3>
+    <div class="row mt-1 mb-2">
+                    <div class="col-12 col-md-6 order-md-first">
+                        <p class="text-muted mt-3 text-center text-md-left">
+                            {% if search_term or current_categories != 'None_None' %}
+                                <span class="small"><a href="{% url 'shop:product_list' %}">Products Home</a> | </span>
+                            {% endif %}
+                            {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                        </p>
+                    </div>
+
+                </div>
     <div class="row">
         {% for product in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
@@ -41,6 +51,12 @@
                 <div class="box-element product">
                     <a href="{{ product.get_absolute_url }}"><strong>{{ product.name }}</strong></a>
                     <h5 style="display: inline-block; float:right;"> ${{ product.price }}</h5>
+                    <hr>
+                    <p>
+                        <a href="{% url 'shop:product_list' %}?category={{ product.Category.slug }}"> <!--product.Category.slug display categories of thesame kind-->
+                          <i class="fas fa-tag mr-1"></i>  {{ product.Category }}
+                        </a>
+                    </p>
                     <hr>
                     <button class="btn btn-outline-secondary add-btn">Add to Cart</button>
                     <a class="btn btn-outline-success" href="{{ product.get_absolute_url }}">View</a>
@@ -73,6 +89,7 @@
         {% endfor %}
     </div>
 </div>
+
 
 
 {% endblock %}

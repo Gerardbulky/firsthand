@@ -30,6 +30,7 @@
     color: orange;
 }
 
+/* i used this to push the card to center */
 .card {
     margin: 5px;
     position: relative;
@@ -121,6 +122,11 @@ body {
 	position: fixed;
 	background: white;
 	z-index: -1;
+}
+
+a.category-badge > span.badge:hover {
+    background: #212529 !important;
+    color: #fff !important;
 }
 
 .btt-link,
