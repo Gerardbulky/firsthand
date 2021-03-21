@@ -8,12 +8,17 @@
 .row-image {
     width: 100px;
 }
-.cart-row {
+.card-row {
     display: flex;
     align-items: flex-stretch;
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #ececec;
+}
+.cardings {
+    margin: 5px;
+    position: relative;
+    left: 50px;
 }
 
 .box-element{
@@ -26,16 +31,13 @@
 .product{
     border-radius: 0 4px 4px 4px;
 }
+
 .logo-font {
     color: orange;
 }
 
 /* i used this to push the card to center */
-.card {
-    margin: 5px;
-    position: relative;
-    left: 50px;
-}
+
 
 
 html {
@@ -71,7 +73,7 @@ body {
 .shop-now-button {
     background: orange;
     color: white;
-    min-width: 260px;
+    min-width: 120px;
 }
 
 .btn-black {
@@ -131,8 +133,8 @@ a.category-badge > span.badge:hover {
 
 /* button for scroll to top */
 .btt-button {
-    height: 42px;
-    width: 42px;
+    height: 25px;
+    width: 25px;
     position: fixed;
     bottom: 10px;
     right: 10px;
@@ -299,8 +301,13 @@ input[name='q']::placeholder {
     .header-container {
         padding-top: 116px;
     }
-
     body {
         height: calc(100vh - 116px);
     }
 }
+
+@media (max-width: 576px) { 
+    .checkout-text{
+        font-size: 30px;
+    }
+ }
