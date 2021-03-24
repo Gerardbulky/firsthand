@@ -36,8 +36,11 @@
     color: orange;
 }
 
-/* i used this to push the card to center */
-
+/* resizing image thumbnail in cart */
+.img-thumbnail {
+    width: 120px;
+    height: 100px;
+}
 
 
 html {
@@ -310,4 +313,5 @@ input[name='q']::placeholder {
     .checkout-text{
         font-size: 30px;
     }
+    
  }

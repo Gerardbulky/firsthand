@@ -39,6 +39,11 @@
                         </a>
                     </p>
                     <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {{ cart_product_form }}
+                        {% csrf_token %}
+                        <input class="btn btn-outline-secondary" type="submit" value="Add to cart">
+                    </form>
                     {{ product.description|linebreaks }}
                 </div>
             </div>

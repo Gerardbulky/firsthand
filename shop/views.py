@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from .models import Category, Product
+from cart.forms import CartAddProductForm
 
 # Create your views here.
 
@@ -29,7 +30,6 @@ def product_list(request, category_slug=None):
             products = products.filter(Category__slug__in=categories)
             categories = Category.objects.filter(slug__in=categories)
 
-
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -51,8 +51,10 @@ def product_list(request, category_slug=None):
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
 
+    cart_product_form = CartAddProductForm()
+
     return render(request,
                   'shop/product/detail.html',
                   {'product': product,
-                   })
+                   'cart_product_form': cart_product_form})
 
