@@ -49,17 +49,22 @@
                         src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
                 </a>
                 <div class="box-element product">
+                <p>
                     <a href="{{ product.get_absolute_url }}"><strong>{{ product.name }}</strong></a>
-                    <h5 style="display: inline-block; float:right;"> ${{ product.price }}</h5>
-                    <hr>
-                    <p>
-                        <a href="{% url 'shop:product_list' %}?category={{ product.Category.slug }}"> <!--product.Category.slug display categories of thesame kind-->
+                    <a style="display: inline-block; float:right;" href="{% url 'shop:product_list' %}?category={{ product.Category.slug }}"> <!--product.Category.slug display categories of thesame kind-->
                           <i class="fas fa-tag mr-1"></i>  {{ product.Category }}
-                        </a>
-                    </p>
+                    </a>
+                </p> 
                     <hr>
-                    <button class="btn btn-outline-secondary add-btn">Add to Cart</button>
-                    <a class="btn btn-outline-success" href="{{ product.get_absolute_url }}">View</a>
+                        <a class="btn btn-outline-success" href="{{ product.get_absolute_url }}">View</a>
+                        <h5 style="display: inline-block; float:right;"> ${{ product.price }}</h5>
+                    <hr>
+                <!-----------add to cart button not working------------------------------------->
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {{ cart_product_form }}
+                        {% csrf_token %}
+                        <input class="btn btn-outline-secondary" type="submit" value="Add to cart">
+                    </form> 
                 </div>
             </div>
 
