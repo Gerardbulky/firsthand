@@ -57,14 +57,14 @@
                         <form action="{% url 'cart:cart_add' product.id %}" method="post">
                             {{ item.update_quantity_form.quantity }}
                             {{ item.update_quantity_form.override }}
-                            <input class="btn btn-outline-dark btn-sm" type="submit" value="Update">
+                            <input class="btn btn-outline-success btn-sm" type="submit" value="Update">
                             {% csrf_token %}
                         </form>
                     </td>
     
                     <td>
                         <form action="{% url 'cart:cart_remove' product.id %}" method="post">
-                            <input class="btn btn-outline-dark btn-sm" type="submit" value="Remove">
+                            <input class="btn btn-outline-danger btn-sm" type="submit" value="Remove">
                             {% csrf_token %}
                         </form>
                     </td>
@@ -82,7 +82,7 @@
         </table>
         <p class="text-right" style="float: right;">
             <a href="{% url 'shop:product_list' %}" class="btn btn-outline-secondary btn-sm">&#x2190;  Continue shopping</a>
-            <a href="#" class="btn btn-secondary btn-sm">
+            <a href="#" class="btn btn-success btn-sm">
                 Checkout
             </a>
         </p>

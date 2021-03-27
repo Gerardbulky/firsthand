@@ -60,11 +60,7 @@
                         <h5 style="display: inline-block; float:right;"> ${{ product.price }}</h5>
                     <hr>
                 <!-----------add to cart button not working------------------------------------->
-                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                        {{ cart_product_form }}
-                        {% csrf_token %}
-                        <input class="btn btn-outline-secondary" type="submit" value="Add to cart">
-                    </form> 
+                    <button class="btn btn-outline-secondary" type="submit">Add to Cart</button>
                 </div>
             </div>
 

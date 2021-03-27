@@ -87,7 +87,9 @@
                       </li>
                       <!---------------------------- shopping bag section-------------------------->
                       <li class="list-inline-item">
+                    {% with total_items=cart|length %}
                         <a class="{% if total_items %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'cart:cart_detail' %}">
+                    {% endwith %}
                             <div class="text-center" display="inline-block;">
                                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                 <p class="my-0">

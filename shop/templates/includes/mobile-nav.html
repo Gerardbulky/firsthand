@@ -45,7 +45,9 @@
 </li>
 <!---------list 3--to----accesss the shopping bag---------------------------->
 <li class="list-inline-item">
+{% with total_items=cart|length %}
     <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-white{% endif %} nav-link d-block d-lg-none" href="{% url 'cart:cart_detail' %}">
+{% endwith %}
         <div class="text-center">
             <div><i class="fas fa-shopping-bag fa-lg"></i></div>
             <p class="my-0">
@@ -60,3 +62,9 @@
         </div>
     </a>
 </li>
+
+{% block page_header %}
+{% endblock %}
+
+{% block sub-header %}
+{% endblock %}
