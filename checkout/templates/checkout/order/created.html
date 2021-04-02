@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block title %}
+    Thank you
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+  <h1>Thank you</h1>
+  <p>Your order has been successfully completed. Your order number is
+  <strong>{{ order.id }}</strong>.</p>
+{% endblock %}

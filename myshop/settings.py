@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'shop',
     'cart',
+    'checkout',
+    'crispy_forms',
 
     'allauth',
     'allauth.account',
@@ -58,6 +60,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'myshop.urls'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -74,9 +78,15 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.cart',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
