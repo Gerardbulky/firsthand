@@ -1,13 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
 
 {% block title %}
 <div class="container header-container">
@@ -59,7 +52,7 @@
                     {% else %}{% static 'img/no_image.png' %}{% endif %}">
                         </a>
                     </td>
-                    <td>{{ product.name }}</td>
+                    <td class="num small">{{ product.name }}</td>
                     <td>
                         <form action="{% url 'cart:cart_add' product.id %}" method="post">
                             {{ item.update_quantity_form.quantity }}
