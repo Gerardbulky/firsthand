@@ -24,4 +24,6 @@ def order_create(request):
         form = OrderCreateForm()
     return render(request,
                   'checkout/order/create.html',
-                  {'cart': cart, 'form': form})
+                  {'cart': cart, 'form': form,
+                   'stripe_public_key': 'pk_test_51IRDEYI93ifnqnA18YPxFgcgWkIPir6YSxh1038ymbn48JgXIhOx7UTCdp8F9M4N602Bs1E97zupGE9FZQNkb95G00DAvzFxPi',
+                   'client_secret': 'test client secret'})

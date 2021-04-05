@@ -4,13 +4,13 @@ from shop.models import Product
 
 class Order(models.Model):
     full_name = models.CharField(max_length=100, null=False, blank=False)
-    email = models.EmailField(max_length=254, null=False, blank=False)
+    email = models.EmailField(max_length=254, null=True, blank=True)
     phone_number = models.CharField(max_length=40, null=False, blank=False)
     street_address = models.CharField(max_length=50, null=False, blank=False)
-    postal_code = models.CharField(max_length=50)
+    postal_code = models.CharField(max_length=50, null=True, blank=True)
     town = models.CharField(max_length=100, null=False, blank=False)
     city = models.CharField(max_length=100, null=False, blank=False)
-    country = models.CharField(max_length=50, null=False, blank=False)
+    country = models.CharField(max_length=50, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
