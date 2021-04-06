@@ -5,9 +5,7 @@
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
-
-
-
+<!---------------- Displaying number of items and total amount ------------------->
 {% block title %}
 <div class="overlay"></div>
     <div class="container header-container">
@@ -32,6 +30,8 @@
     </div>
 {% endblock %}
 
+
+<!----------------Block content Displaying checkout header/Order/Delivery information ------------------->
 {% block content %}
   <div class="container">
         <div class="row">
@@ -40,9 +40,9 @@
                 <hr>
             </div>
         </div>
-   <!-- <h3 class="mb-4">CHECKOUT</h3><hr> -->
 
     <div class="row">
+        <!----------------column displaing checkout order ------------------->
         <div class="col-12 col-lg-6 order-lg-last mb-5">
             <h5 class="text-muted">Your Order</h5>
             <div class="row">
@@ -86,7 +86,7 @@
         </div>
 
 
-
+<!----------------column displaing Delivery information ------------------->
         <div class="col col-12 col-lg-6 order-lg-last mb-5">
             <p><strong> Please fill out the form below to complete your order </strong></p>
             <form method="post" class="order-form">
