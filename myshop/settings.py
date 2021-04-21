@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!y5*e%x%%wx(&dx#it94dti^mmf_+i^x#cns#umzuoin^2hb!y'
+SECRET_KEY = 'secret_key_firsthand'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,10 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'shop',
-    'cart',
     'checkout',
     'crispy_forms',
-
+    'payment.apps.PaymentConfig',
+    'bag',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -99,6 +99,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Emails confirmat settx
+
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # allows auth using usernam/email
 ACCOUNT_EMAIL_REQUIRED = True                # email required to register 4 the site
@@ -166,3 +167,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CART_SESSION_ID = "cart"
 
+
+# stripe
+STRIPE_CURRENCY = 'usd'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')

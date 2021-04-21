@@ -46,18 +46,16 @@
 <!---------list 3--to----accesss the shopping bag---------------------------->
 <li class="list-inline-item">
 {% with total_items=cart|length %}
-    <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-white{% endif %} nav-link d-block d-lg-none" href="{% url 'cart:cart_detail' %}">
+    <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-white{% endif %} nav-link d-block d-lg-none" href="{% url 'view_bag' %}">
 {% endwith %}
         <div class="text-center">
             <div><i class="fas fa-shopping-bag fa-lg"></i></div>
             <p class="my-0">
-                {% with total_items=cart|length %}
-                    {% if total_items > 0 %}
-                        ${{ cart.get_total_price }}
-                    {% else %}
-                        $0.00
-                    {% endif %}
-                {% endwith %}
+                {% if total_items > 0 %}
+                    ${{ grand_total|floatformat:2 }}
+                {% else %}
+                    $0.00
+                {% endif %}
             </p>
         </div>
     </a>
