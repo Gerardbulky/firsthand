@@ -24,7 +24,71 @@
             <div class="col">
                 {% if bag_items %}
                     <div class="table-responsive rounded">
-                        {{ bag_items }}
+                        <table class="table table-sm">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Image</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Remove</th>
+                                    <th scope="col">Unit price</th>
+                                    <th scope="col">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in bag_items %}
+                                {% with product=item.product %}
+                                <tr>
+                                    <td class="num">
+                                        <a href="{{ product.get_absolute_url }}">
+                                            <img class="img-thumbnail" alt="Responsive image" src="{% if product.image %}{{ product.image.url }}
+                                    {% else %}{% static 'img/no_image.png' %}{% endif %}">
+                                        </a>
+                                    </td>
+                                    <td class="num small"><strong>{{ product.name }}</strong></td>
+                                    <td>
+                                        <form action="#" method="post">
+                                            {{ item.quantity }}
+                                            <input class="btn btn-outline-success btn-sm" type="submit" value="Update">
+                                            {% csrf_token %}
+                                        </form>
+                                    </td>
+                    
+                                    <td class="num">
+                                        <form action="#" method="post">
+                                            <input class="btn btn-outline-danger btn-sm" type="submit" value="Remove">
+                                            {% csrf_token %}
+                                        </form>
+                                    </td>
+                                    <td class="num">${{ product.price }}</td>
+                                    <td class="num">${{ product.price }}</td>
+                                </tr>
+                                {% endwith %}
+                                {% endfor %}
+                                <tr class="total table-secondary float:right">
+                                    <td><strong>Grand Total: </strong></td>
+                                    <td colspan="4"></td>
+                                    <td class="num"> <strong> ${{ grand_total|floatformat:2 }}</strong></td>
+                                </tr>
+                            </tbody>
+                            <hr>
+                            <tr class="mt-5">
+                                <td colspan="5" class="text-right">
+                                    <a href="{% url 'shop:product_list' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </span>
+                                        <span class="text-uppercase">Keep Shopping</span>
+                                    </a>
+                                    <a href="" class="btn btn-black rounded-0 btn-lg">
+                                        <span class="text-uppercase">Secure Checkout</span>
+                                        <span class="icon">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>
