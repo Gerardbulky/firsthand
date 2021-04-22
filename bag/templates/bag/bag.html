@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bag_tools %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -30,7 +31,6 @@
                                     <th>Image</th>
                                     <th scope="col">Product</th>
                                     <th scope="col">Qty</th>
-                                    <th scope="col">Remove</th>
                                     <th scope="col">Unit price</th>
                                     <th scope="col">Subtotal</th>
                                 </tr>
@@ -47,27 +47,47 @@
                                     </td>
                                     <td class="num small"><strong>{{ product.name }}</strong></td>
                                     <td>
-                                        <form action="#" method="post">
-                                            {{ item.quantity }}
-                                            <input class="btn btn-outline-success btn-sm" type="submit" value="Update">
+                                        <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="post">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <!----input-group prepend----->
+                                                    <div class="input-group-prepend">
+                                                        <button class="decrement-qty btn btn-sm btn-black rounded-0" 
+                                                            data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                            <span>
+                                                                <i class="fas fa-minus fa-sm"></i>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!---end--->
+                                                    <!-----form incrementation from 1 to 499------>
+                                                    <input class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="499" data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+                                                   <!---end----->
+                                                   <!----input-group append----->
+                                                   <div class="input-group-append">
+                                                    <button class="increment-qty btn btn-sm btn-black rounded-0"
+                                                        data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                        <span>
+                                                            <i class="fas fa-plus fa-sm"></i>
+                                                        </span>
+                                                    </button>
+                                                    </div>
+                                                    <!-----end---->
+                                                </div>
+                                            </div>
                                             {% csrf_token %}
                                         </form>
-                                    </td>
-                    
-                                    <td class="num">
-                                        <form action="#" method="post">
-                                            <input class="btn btn-outline-danger btn-sm" type="submit" value="Remove">
-                                            {% csrf_token %}
-                                        </form>
+                                        <a class="update-link text-info"><small>Update</small></a>
+                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                     </td>
                                     <td class="num">${{ product.price }}</td>
-                                    <td class="num">${{ product.price }}</td>
+                                    <td class="num">${{ product.price | calc_subtotal:item.quantity }}</td>
                                 </tr>
                                 {% endwith %}
                                 {% endfor %}
                                 <tr class="total table-secondary float:right">
                                     <td><strong>Grand Total: </strong></td>
-                                    <td colspan="4"></td>
+                                    <td colspan="3"></td>
                                     <td class="num"> <strong> ${{ grand_total|floatformat:2 }}</strong></td>
                                 </tr>
                                 <hr>
@@ -102,4 +122,30 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'shop/product/includes/quantity_input_script.html' %}
+
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url = `/bag/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
 {% endblock %}
