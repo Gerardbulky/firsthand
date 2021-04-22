@@ -33,7 +33,7 @@ def product_list(request, category_slug=None):
             query = request.GET['q']
             if not query:
                 messages.error(request, "You didn't enter any search criteria")
-                return redirect(reverse('products'))
+                return redirect(reverse('index'))
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
@@ -45,6 +45,8 @@ def product_list(request, category_slug=None):
                    'products': products,
                    'search_term': query,
                    'current_categories': categories})
+
+
 
 
 def product_detail(request, id, slug):

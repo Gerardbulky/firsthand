@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'shop',
     'checkout',
     'crispy_forms',
-    'payment.apps.PaymentConfig',
     'bag',
     'allauth',
     'allauth.account',
