@@ -88,7 +88,7 @@
                                 <tr class="total table-secondary float:right">
                                     <td><strong>Grand Total: </strong></td>
                                     <td colspan="3"></td>
-                                    <td class="num"> <strong> ${{ grand_total|floatformat:2 }}</strong></td>
+                                    <td class="num"> <strong>${{ grand_total|floatformat:2 }}</strong></td>
                                 </tr>
                                 
                                 <tr>
@@ -99,7 +99,7 @@
                                             </span>
                                             <span class="text-uppercase">Keep Shopping</span>
                                         </a>
-                                        <a href="#" class="btn btn-black rounded-0 btn-lg">
+                                        <a href="{% url 'checkout:order_create' %}" class="btn btn-black rounded-0 btn-lg">
                                             <span class="text-uppercase">Secure Checkout</span>
                                             <span class="icon">
                                                 <i class="fas fa-lock"></i>
