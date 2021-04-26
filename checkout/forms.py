@@ -5,9 +5,9 @@ from .models import Order
 class OrderCreateForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('full_name', 'phone_number', 'email', 'street_address',
+        fields = ['full_name', 'email', 'phone_number', 'street_address',
                   'postal_code', 'town', 'city', 'country',
-                  )
+        ]
 
 
 def __init__(self, *args, **kwargs):

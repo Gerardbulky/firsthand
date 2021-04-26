@@ -10,7 +10,7 @@ class OrderItemInline(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'full_name', 'email', 'phone_number',
-                    'street_address', 'postal_code', 'city', 'country', 'paid',
+                    'street_address', 'city', 'paid',
                     'created', 'updated']
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]

@@ -67,16 +67,17 @@
                 </div>
         
                 <div class="col-2">
-                    <p class="my-0">$${{ grand_total | floatformat:2 }}</p>
+                    <p class="my-0">${{ grand_total | floatformat:2 }}</p>
                 </div>
             </div>
         </div>
 
 
 <!----------------column displaing Delivery information ------------------->
+        <!----there should be a row here--->
         <div class="col col-12 col-lg-6 order-lg-last mb-5">
             <p><strong> Please fill out the form below to complete your order </strong></p>
-            <form method="POST" class="order-form" id="payment_form">
+            <form method="POST" class="order-form" id="payment-form">
                 <!--   <p><input type="submit" value="Place order"></p>
                 {{ form.as_p }} -->
                 {% csrf_token %}
@@ -135,4 +136,19 @@
         </div>
     </div>
     </div>
+    
+    <div id="loading-overlay">
+        <h1 class="text-light logo-font loading-spinner">
+            <span class="icon">
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+            </span>
+        </h1>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
