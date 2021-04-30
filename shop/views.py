@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from .models import Category, Product
+from .forms import ProductForm
 
 # Create your views here.
 
@@ -47,12 +48,11 @@ def product_list(request, category_slug=None):
                    'current_categories': categories})
 
 
-
-
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
 
     return render(request,
                   'shop/product/detail.html',
                   {'product': product})
+
 

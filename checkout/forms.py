@@ -20,7 +20,7 @@ def __init__(self, *args, **kwargs):
         'full_name': 'Full Name',
         'email': 'Email Address',
         'phone_number': 'Phone Number',
-        'street_address': 'Street Name',
+        'street_address': 'Street Address',
         'postal_code': 'Postal Code',
         'town': 'Town',
         'city': 'City',

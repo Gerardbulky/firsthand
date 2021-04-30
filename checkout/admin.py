@@ -12,5 +12,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'full_name', 'email', 'phone_number',
                     'street_address', 'city', 'paid',
                     'created', 'updated']
-    list_filter = ['paid', 'created', 'updated']
+    list_filter = ['paid', 'created', 'updated',
+                   'grand_total', 'original_bag', 'stripe_pid']
     inlines = [OrderItemInline]

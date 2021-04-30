@@ -17,7 +17,6 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
-            'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
         return HttpResponse(status=200)
@@ -40,14 +39,18 @@ def create_checkout(request):
             'phone_number': request.POST['phone_number'],
             'street_address': request.POST['street_address'],
             'postal_code': request.POST['postal_code'],
-            'town': request.POST['town'],
             'city': request.POST['city'],
             'country': request.POST['country'],
         }
         order_form = OrderCreateForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
             order.paid = True
+            order.grand_total = True
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_bag = json.dumps(bag)
+            order.save()
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -67,7 +70,7 @@ def create_checkout(request):
                     order.delete()
                     return redirect(reverse('view_bag'))
             # Save the info to the user's profile if all is well
-            request.session['save_info'] = 'save-info' in request.POST
+            # request.session['save_info'] = 'save-info' in request.POST
 
             """
             confirmation email for submission
@@ -113,22 +116,3 @@ def create_checkout(request):
 
     return render(request, template, context)
 
-
-def checkout_success(request):
-    """
-    Handle successful checkouts
-    """
-    save_info = request.session.get('save_info')
-    order = get_object_or_404(Order, id=id)
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {id}. A confirmation \
-        email will be sent to .')
-
-    if 'bag' in request.session:
-        del request.session['bag']
-
-    template = 'checkout/order/checkout_success.html'
-
-    context = {'order': order}
-
-    return render(request, template, context)
